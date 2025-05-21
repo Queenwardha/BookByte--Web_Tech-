@@ -1,0 +1,45 @@
+/* 
+ * BookByte Theme Migration Guide
+ * This file contains CSS variable mappings to help migrate from coffee-themed
+ * variables to book-themed variables. In future updates, direct use of --coffee-*
+ * variables should be replaced with their --book-* equivalents.
+ */
+
+:root {
+  /* Legacy mappings - these ensure backward compatibility */
+  --coffee-primary: var(--book-primary);
+  --coffee-dark: var(--book-dark);
+  --coffee-light: var(--book-light);
+  --coffee-accent: var(--book-accent);
+  --coffee-medium: var(--book-secondary);
+  --coffee-bg: var(--book-bg);
+
+  /* Book theme color palette */
+  --book-primary: #1e3a8a; /* Dark blue */
+  --book-dark: #0f172a; /* Deep navy */
+  --book-light: #e0f2fe; /* Light blue */
+  --book-accent: #6366f1; /* Indigo */
+  --book-secondary: #0ea5e9; /* Sky blue */
+  --book-tertiary: #8b5cf6; /* Purple */
+  --book-bg: #f8fafc; /* Off-white */
+  --book-text: #1e293b; /* Slate */
+  --book-muted: #94a3b8; /* Slate-300 */
+  --book-highlight: #f59e0b; /* Amber-500 */
+
+  /* Font families */
+  --book-title-font: "Playfair Display", Georgia, serif;
+  --book-body-font: "Merriweather", Georgia, serif;
+  --book-heading-font: "Roboto Slab", serif;
+}
+
+/*
+ * USAGE GUIDE:
+ * 
+ * 1. For new development, always use the --book-* variables
+ * 2. When refactoring existing code, replace --coffee-* with --book-* equivalents
+ * 3. The variable mappings above ensure backward compatibility
+ *
+ * Example:
+ *   Old: color: var(--coffee-accent);
+ *   New: color: var(--book-accent);
+ */

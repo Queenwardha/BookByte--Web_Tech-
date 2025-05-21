@@ -1,0 +1,1820 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>BookByte | Your Source for Books & Reading</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" th:href="@{/css/modal.css}" />
+    <link rel="stylesheet" th:href="@{/css/cart-animation.css}" />
+    <link rel="stylesheet" th:href="@{/css/cart-counter.css}" />
+    <link rel="stylesheet" th:href="@{/css/navigation.css}" />
+    <link rel="stylesheet" th:href="@{/css/bookbyte-theme.css}" />
+    <link rel="stylesheet" th:href="@{/css/theme-migration.css}" />
+    <link rel="stylesheet" th:href="@{/css/book-cart.css}" />
+    <link rel="stylesheet" th:href="@{/css/toast-notifications.css}" />
+    <link rel="stylesheet" th:href="@{/css/toast.css}" />
+    <script th:src="@{/js/cart-counter.js}"></script>
+    <script th:src="@{/js/counter-unified.js}"></script>
+    <script th:src="@{/js/bookbyte-migration.js}"></script>
+    <script th:src="@{/js/product-interactions.js}" defer></script>
+    <link
+      rel="shortcut icon"
+      href="https://cdn-icons-png.flaticon.com/512/2232/2232688.png"
+      type="image/png"
+    />
+  </head>
+  <body>
+    <div class="overlay" data-overlay></div>
+
+    <header>
+      <div class="header-top">
+        <div class="container">
+          <ul class="header-social-container">
+            <li>
+              <a href="#" class="social-link"
+                ><ion-icon name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a href="#" class="social-link"
+                ><ion-icon name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a href="#" class="social-link"
+                ><ion-icon name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a href="#" class="social-link"
+                ><ion-icon name="logo-linkedin"></ion-icon
+              ></a>
+            </li>
+          </ul>
+
+          <div class="header-alert-news">
+
+          </div>
+
+          <div class="header-top-actions">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="header-main">
+        <div class="container">
+          <a href="#" class="header-logo"
+            ><h1
+              style="
+                font-size: 1.8rem;
+                color: var(--book-primary);
+                font-family: 'Playfair Display', serif;
+                display: flex;
+                align-items: center;
+              "
+            >
+              <ion-icon
+                name="book-outline"
+                style="font-size: 2rem; margin-right: 8px"
+              ></ion-icon>
+              <span style="font-weight: 700; letter-spacing: 0.05em"
+                >Book<span style="color: var(--book-accent)">Byte</span></span
+              >
+            </h1></a
+          >
+
+          <div class="header-user-actions">
+            <button class="action-btn">
+              <ion-icon name="person-outline"></ion-icon>
+            </button>
+            <a href="/wishlist" class="action-btn wishlist-btn">
+              <ion-icon name="heart-outline"></ion-icon>
+              <span
+                class="count"
+                th:text="${wishlistItemCount != null ? wishlistItemCount : '0'}"
+                >0</span
+              >
+              <div class="wishlist-tooltip">View Wishlist</div>
+              <!-- Mini Wishlist Preview -->
+              <div class="mini-wishlist-preview">
+                <div class="mini-wishlist-header">
+                  <h4>Your Wishlist</h4>
+                </div>
+                <div class="mini-wishlist-items">
+                  <!-- Items will be loaded dynamically -->
+                  <div class="mini-wishlist-empty">Your wishlist is empty</div>
+                </div>
+                <div class="mini-wishlist-footer">
+                  <a href="/wishlist" class="mini-wishlist-button"
+                    >View Wishlist</a
+                  >
+                </div>
+              </div>
+            </a>
+            <a href="/cart" class="action-btn cart-btn">
+              <ion-icon name="bag-handle-outline"></ion-icon>
+              <span
+                class="count cart-counter"
+                th:text="${cartItemCount != null ? cartItemCount : '0'}"
+                >0</span
+              >
+              <div class="cart-tooltip">View Cart</div>
+              <!-- Mini Cart Preview -->
+              <div class="mini-cart-preview">
+                <div class="mini-cart-header">
+                  <h4>Your Cart</h4>
+                </div>
+                <div class="mini-cart-items">
+                  <!-- Items will be loaded dynamically -->
+                  <div class="mini-cart-empty">Your cart is empty</div>
+                </div>
+                <div class="mini-cart-footer">
+                  <a href="/cart" class="mini-cart-button">View Cart</a>
+                  <a href="/checkout" class="mini-cart-button checkout"
+                    >Checkout</a
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <nav class="desktop-navigation-menu">
+        <div class="container">
+          <ul class="desktop-menu-category-list">
+            <li class="menu-category">
+              <a href="#" class="menu-title">Home</a>
+            </li>
+            <li class="menu-category">
+              <a href="#" class="menu-title">Books</a>
+            </li>
+            <li class="menu-category">
+              <a href="#" class="menu-title">Fiction</a>
+            </li>
+            <li class="menu-category">
+              <a href="#" class="menu-title">Non-Fiction</a>
+            </li>
+            <li class="menu-category">
+              <a href="#" class="menu-title">Children's Books</a>
+            </li>
+            <li class="menu-category">
+              <a href="#" class="menu-title">Blog</a>
+            </li>
+            <li class="menu-category">
+              <a href="#" class="menu-title">Special Offers</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="mobile-bottom-navigation">
+        <a th:href="@{/orders}" class="action-btn cart-btn">
+          <button class="action-btn" data-mobile-menu-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+        </a>
+        <a th:href="@{/cart}" class="action-btn cart-btn">
+          <ion-icon name="bag-handle-outline"></ion-icon>
+          <span
+            class="count cart-counter"
+            th:text="${cartItemCount != null ? cartItemCount : '0'}"
+            >0</span
+          >
+        </a>
+        <a th:href="@{/}" class="action-btn">
+          <ion-icon name="home-outline"></ion-icon>
+        </a>
+        <a th:href="@{/wishlist}" class="action-btn wishlist-btn">
+          <ion-icon name="heart-outline"></ion-icon>
+          <span
+            class="count wishlist-counter"
+            th:text="${wishlistItemCount != null ? wishlistItemCount : '0'}"
+            >0</span
+          >
+          <div class="wishlist-tooltip">View Wishlist</div>
+        </a>
+        <a th:href="@{/products}" class="action-btn">
+          <ion-icon name="grid-outline"></ion-icon>
+        </a>
+        <div class="mobile-menu-dropdown">
+          <button class="action-btn mobile-menu-dropdown-btn">
+            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+          </button>
+          <div class="mobile-dropdown-content">
+            <a th:href="@{/profile}" sec:authorize="isAuthenticated()">
+              <ion-icon name="person-outline"></ion-icon> Profile
+            </a>
+            <a th:href="@{/about}">
+              <ion-icon name="information-circle-outline"></ion-icon> About Us
+            </a>
+            <form
+              th:action="@{/logout}"
+              method="post"
+              sec:authorize="isAuthenticated()"
+            >
+              <button type="submit" class="dropdown-menu-button">
+                <ion-icon name="log-out-outline"></ion-icon> Logout
+              </button>
+            </form>
+            <a th:href="@{/login}" sec:authorize="!isAuthenticated()">
+              <ion-icon name="log-in-outline"></ion-icon> Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="banner">
+        <div class="container">
+          <div class="slider-container has-scrollbar">
+            <div class="slider-item">
+              <img
+                src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?q=80&w=1374&auto=format&fit=crop"
+                alt="bestselling books"
+                class="banner-img"
+              />
+              <div class="banner-content">
+                <p class="banner-subtitle">Curated Collection</p>
+                <h2 class="banner-title">Award-Winning Literature</h2>
+                <p class="banner-text">
+                  Discover stories that inspire &dollar; <b>9</b>.99+
+                </p>
+                <a href="#" class="banner-btn">Explore Books</a>
+              </div>
+            </div>
+
+            <div class="slider-item">
+              <img
+                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1470&auto=format&fit=crop"
+                alt="ebooks and audiobooks"
+                class="banner-img"
+              />
+              <div class="banner-content">
+                <p class="banner-subtitle">Digital Bookshelf</p>
+                <h2 class="banner-title">eBooks & Literary Audiobooks</h2>
+                <p class="banner-text">
+                  Read anywhere, anytime &dollar; <b>4</b>.99+
+                </p>
+                <a href="#" class="banner-btn">Browse Library</a>
+              </div>
+            </div>
+
+            <div class="slider-item">
+              <img
+                src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1373&auto=format&fit=crop"
+                alt="book subscription boxes"
+                class="banner-img"
+              />
+              <div class="banner-content">
+                <p class="banner-subtitle">Reader's Circle</p>
+                <h2 class="banner-title">Literary Subscription Boxes</h2>
+                <p class="banner-text">
+                  Curated monthly treasures &dollar; <b>19</b>.99
+                </p>
+                <a href="#" class="banner-btn">Join The Circle</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category">
+        <div class="container">
+          <div class="category-item-container has-scrollbar">
+            <div class="category-item">
+              <div class="category-img-box">
+                <ion-icon
+                  name="book-outline"
+                  style="font-size: 2.2rem; color: var(--book-primary)"
+                ></ion-icon>
+              </div>
+              <div class="category-content-box">
+                <div class="category-content-flex">
+                  <h3 class="category-item-title">Fiction Books</h3>
+                  <p class="category-item-amount">(53)</p>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  class="category-btn"
+                  onclick="openCategoryModal('fiction-books'); return false;"
+                  data-category="fiction-books"
+                  >Show All</a
+                >
+              </div>
+            </div>
+
+            <div class="category-item">
+              <div class="category-img-box">
+                <ion-icon
+                  name="school-outline"
+                  style="font-size: 2.2rem; color: var(--book-secondary)"
+                ></ion-icon>
+              </div>
+              <div class="category-content-box">
+                <div class="category-content-flex">
+                  <h3 class="category-item-title">Non-Fiction</h3>
+                  <p class="category-item-amount">(68)</p>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  class="category-btn"
+                  onclick="openCategoryModal('non-fiction'); return false;"
+                  data-category="non-fiction"
+                  >Show All</a
+                >
+              </div>
+            </div>
+
+            <div class="category-item">
+              <div class="category-img-box">
+                <ion-icon
+                  name="happy-outline"
+                  style="font-size: 2.2rem; color: #f59e0b"
+                ></ion-icon>
+              </div>
+              <div class="category-content-box">
+                <div class="category-content-flex">
+                  <h3 class="category-item-title">Children's Books</h3>
+                  <p class="category-item-amount">(35)</p>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  class="category-btn"
+                  onclick="openCategoryModal('children-books'); return false;"
+                  data-category="children-books"
+                  >Show All</a
+                >
+              </div>
+            </div>
+
+            <div class="category-item">
+              <div class="category-img-box">
+                <ion-icon
+                  name="bookmark-outline"
+                  style="font-size: 2.2rem; color: var(--book-accent)"
+                ></ion-icon>
+              </div>
+              <div class="category-content-box">
+                <div class="category-content-flex">
+                  <h3 class="category-item-title">Book Accessories</h3>
+                  <p class="category-item-amount">(27)</p>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  class="category-btn"
+                  onclick="openCategoryModal('book-accessories'); return false;"
+                  >Show All</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-container">
+        <div class="container">
+          <div class="product-box">
+            <div class="product-minimal">
+              <div class="product-showcase">
+                <h2 class="title">New Arrivals</h2>
+                <div class="showcase-wrapper has-scrollbar">
+                  <div class="showcase-container">
+                    <div class="showcase" th:id="'product-' + 101">
+                      <a th:href="@{/products/101}" class="showcase-img-box">
+                        <img
+                          th:src="@{https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1374&auto=format&fit=crop}"
+                          alt="The Midnight Chronicles"
+                          class="showcase-img"
+                          width="70"
+                        />
+                      </a>
+                      <div class="showcase-content">
+                        <a th:href="@{/products/101}"
+                          ><h4 class="showcase-title">
+                            The Midnight Chronicles
+                          </h4></a
+                        >
+                        <span class="showcase-category"
+                          >Mystery & Thriller</span
+                        >
+                        <div class="price-box">
+                          <p class="price">$18.99</p>
+                          <del>$22.00</del>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="showcase" th:id="'product-' + 102">
+                      <a th:href="@{/products/102}" class="showcase-img-box">
+                        <img
+                          th:src="@{https://images.unsplash.com/photo-1531072901881-d644216d4bf9?q=80&w=1374&auto=format&fit=crop}"
+                          alt="Whispers of the Ocean - Hardcover Edition"
+                          class="showcase-img"
+                          width="70"
+                        />
+                      </a>
+                      <div class="showcase-content">
+                        <a th:href="@{/products/102}"
+                          ><h4 class="showcase-title">
+                            Whispers of the Ocean - Hardcover Edition
+                          </h4></a
+                        >
+                        <span class="showcase-category">Literary Fiction</span>
+                        <div class="price-box">
+                          <p class="price">$32.50</p>
+                          <del>$39.99</del>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="showcase" th:id="'product-' + 103">
+                      <a th:href="@{/products/103}" class="showcase-img-box">
+                        <img
+                          th:src="@{https://images.unsplash.com/photo-1633477189729-9290b3261d0a?q=80&w=1374&auto=format&fit=crop}"
+                          alt="The Little Adventurer - Children's Book"
+                          class="showcase-img"
+                          width="70"
+                        />
+                      </a>
+                      <div class="showcase-content">
+                        <a th:href="@{/products/103}"
+                          ><h4 class="showcase-title">
+                            The Little Adventurer - Children's Book
+                          </h4></a
+                        >
+                        <span class="showcase-category">Children's Books</span>
+                        <div class="price-box">
+                          <p class="price">$16.99</p>
+                          <del>$19.50</del>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="showcase" th:id="'product-' + 104">
+                      <a th:href="@{/products/104}" class="showcase-img-box">
+                        <img
+                          th:src="@{https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=1374&auto=format&fit=crop}"
+                          alt="Creativity and Innovation - Business Handbook"
+                          class="showcase-img"
+                          width="70"
+                        />
+                      </a>
+                      <div class="showcase-content">
+                        <a th:href="@{/products/104}"
+                          ><h4 class="showcase-title">
+                            Creativity and Innovation - Business Handbook
+                          </h4></a
+                        >
+                        <span class="showcase-category">Non-Fiction</span>
+                        <div class="price-box">
+                          <p class="price">$45.99</p>
+                          <del>$59.99</del>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-main">
+              <h2 class="title">Featured Products</h2>
+              <div class="product-grid">
+                <div class="showcase" th:id="'product-' + 201">
+                  <div class="showcase-banner">
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=1374&auto=format&fit=crop}"
+                      alt="The Silent Library - Bestselling Mystery Novel"
+                      class="product-img default"
+                      width="300"
+                    />
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1629992101753-56d196c8aabb?q=80&w=1374&auto=format&fit=crop}"
+                      alt="The Silent Library - Bestselling Mystery Novel"
+                      class="product-img hover"
+                      width="300"
+                    />
+                    <p class="showcase-badge">15%</p>
+                    <div class="showcase-actions">
+                      <button
+                        class="btn-action"
+                        data-action="add-to-wishlist"
+                        th:data-product-id="201"
+                      >
+                        <ion-icon name="heart-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        th:onclick="'quickView(' + 201 + ')'"
+                      >
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        data-action="add-to-cart"
+                        th:data-product-id="201"
+                      >
+                        <ion-icon name="bag-add-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="showcase-content">
+                    <span class="showcase-category">Mystery & Thriller</span>
+                    <a th:href="@{/products/201}"
+                      ><h3 class="showcase-title">
+                        The Silent Library - Bestselling Mystery Novel
+                      </h3></a
+                    >
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
+                    </div>
+                    <div class="price-box">
+                      <p class="price">$14.99</p>
+                      <del>$17.50</del>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="showcase" th:id="'product-' + 202">
+                  <div class="showcase-banner">
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1374&auto=format&fit=crop}"
+                      alt="Eternal Gardens - Fantasy Series Collection"
+                      class="product-img default"
+                      width="300"
+                    />
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?q=80&w=1374&auto=format&fit=crop}"
+                      alt="Eternal Gardens - Fantasy Series Collection"
+                      class="product-img hover"
+                      width="300"
+                    />
+                    <p class="showcase-badge angle black">Sale</p>
+                    <div class="showcase-actions">
+                      <button
+                        class="btn-action"
+                        data-action="add-to-wishlist"
+                        th:data-product-id="202"
+                      >
+                        <ion-icon name="heart-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        th:onclick="'quickView(' + 202 + ')'"
+                      >
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        data-action="add-to-cart"
+                        th:data-product-id="202"
+                      >
+                        <ion-icon name="bag-add-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="showcase-content">
+                    <span class="showcase-category"
+                      >Fantasy & Science Fiction</span
+                    >
+                    <a th:href="@{/products/202}"
+                      ><h3 class="showcase-title">
+                        Eternal Gardens - Fantasy Series Collection
+                      </h3></a
+                    >
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
+                    </div>
+                    <div class="price-box">
+                      <p class="price">$28.99</p>
+                      <del>$36.00</del>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="showcase" th:id="'product-' + 203">
+                  <div class="showcase-banner">
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?q=80&w=1470&auto=format&fit=crop}"
+                      alt="Modern Bookends Set"
+                      class="product-img default"
+                      width="300"
+                    />
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1613685703305-dec0d139ea35?q=80&w=1470&auto=format&fit=crop}"
+                      alt="Modern Bookends Set"
+                      class="product-img hover"
+                      width="300"
+                    />
+                    <p class="showcase-badge angle pink">NEW</p>
+                    <div class="showcase-actions">
+                      <button
+                        class="btn-action"
+                        data-action="add-to-wishlist"
+                        th:data-product-id="203"
+                      >
+                        <ion-icon name="heart-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        th:onclick="'quickView(' + 203 + ')'"
+                      >
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        data-action="add-to-cart"
+                        th:data-product-id="203"
+                      >
+                        <ion-icon name="bag-add-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="showcase-content">
+                    <span class="showcase-category">Book Accessories</span>
+                    <a th:href="@{/products/203}"
+                      ><h3 class="showcase-title">
+                        Modern Bookends Set (Set of 2)
+                      </h3></a
+                    >
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-half-outline"></ion-icon>
+                    </div>
+                    <div class="price-box">
+                      <p class="price">$24.99</p>
+                      <del>$32.00</del>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="showcase" th:id="'product-' + 204">
+                  <div class="showcase-banner">
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1373&auto=format&fit=crop}"
+                      alt="Monthly Book Box Subscription"
+                      class="product-img default"
+                      width="300"
+                    />
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1474366521946-c3d4b507abf2?q=80&w=1470&auto=format&fit=crop}"
+                      alt="Monthly Book Box Subscription"
+                      class="product-img hover"
+                      width="300"
+                    />
+                    <div class="showcase-actions">
+                      <button
+                        class="btn-action"
+                        data-action="add-to-wishlist"
+                        th:data-product-id="204"
+                      >
+                        <ion-icon name="heart-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        th:onclick="'quickView(' + 204 + ')'"
+                      >
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        data-action="add-to-cart"
+                        th:data-product-id="204"
+                      >
+                        <ion-icon name="bag-add-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="showcase-content">
+                    <span class="showcase-category">Subscription</span>
+                    <a th:href="@{/products/204}">
+                      <h3 class="showcase-title">
+                        Monthly Book Club Subscription Box
+                      </h3>
+                    </a>
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+                    <div class="price-box">
+                      <p class="price">$29.99</p>
+                      <del>$35.00</del>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="showcase" th:id="'product-' + 205">
+                  <div class="showcase-banner">
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=1376&auto=format&fit=crop}"
+                      alt="Oxford Premium Leather Bookmark Set"
+                      class="product-img default"
+                      width="300"
+                    />
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1598014082230-e8f1566be762?q=80&w=1376&auto=format&fit=crop}"
+                      alt="Oxford Premium Leather Bookmark Set"
+                      class="product-img hover"
+                      width="300"
+                    />
+                    <p class="showcase-badge">20%</p>
+                    <div class="showcase-actions">
+                      <button
+                        class="btn-action"
+                        data-action="add-to-wishlist"
+                        th:data-product-id="205"
+                      >
+                        <ion-icon name="heart-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        th:onclick="'quickView(' + 205 + ')'"
+                      >
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        data-action="add-to-cart"
+                        th:data-product-id="205"
+                      >
+                        <ion-icon name="bag-add-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="showcase-content">
+                    <span class="showcase-category">Book Accessories</span>
+                    <a th:href="@{/products/205}"
+                      ><h3 class="showcase-title">
+                        Oxford Premium Leather Bookmark Set
+                      </h3></a
+                    >
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-half-outline"></ion-icon>
+                    </div>
+                    <div class="price-box">
+                      <p class="price">$31.99</p>
+                      <del>$39.99</del>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="showcase" th:id="'product-' + 206">
+                  <div class="showcase-banner">
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1476275466078-4007374efbbe?q=80&w=1374&auto=format&fit=crop}"
+                      alt="Adjustable Book Reading Light"
+                      class="product-img default"
+                      width="300"
+                    />
+                    <img
+                      th:src="@{https://images.unsplash.com/photo-1491841573634-28140fc7ced7?q=80&w=1374&auto=format&fit=crop}"
+                      alt="Adjustable Book Reading Light"
+                      class="product-img hover"
+                      width="300"
+                    />
+                    <div class="showcase-actions">
+                      <button
+                        class="btn-action"
+                        data-action="add-to-wishlist"
+                        th:data-product-id="206"
+                      >
+                        <ion-icon name="heart-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        th:onclick="'quickView(' + 206 + ')'"
+                      >
+                        <ion-icon name="eye-outline"></ion-icon>
+                      </button>
+                      <button
+                        class="btn-action"
+                        data-action="add-to-cart"
+                        th:data-product-id="206"
+                      >
+                        <ion-icon name="bag-add-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="showcase-content">
+                    <span class="showcase-category">Book Accessories</span>
+                    <a th:href="@{/products/206}"
+                      ><h3 class="showcase-title">
+                        Adjustable Book Reading Light
+                      </h3></a
+                    >
+                    <div class="showcase-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star-outline"></ion-icon>
+                    </div>
+                    <div class="price-box">
+                      <p class="price">$12.99</p>
+                      <del>$15.00</del>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="container">
+          <div class="testimonials-box">
+            <div class="testimonial">
+              <h2 class="title">Readers' Reviews</h2>
+              <div class="testimonial-card">
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1374&auto=format&fit=crop"
+                  alt="Emily Parker"
+                  class="testimonial-banner"
+                  width="80"
+                  height="80"
+                />
+                <h3 class="testimonial-name">Emily Parker</h3>
+                <p class="testimonial-title">Literature Professor</p>
+                <img
+                  src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/icons/quote.svg"
+                  alt="quotation"
+                  class="quotation-img"
+                  width="30"
+                />
+                <p class="testimonial-desc">
+                  "BookByte's curated collections have transformed my reading
+                  experience. Their rare book section is exceptional, and I've
+                  found several first editions that I've been searching for
+                  years!"
+                </p>
+              </div>
+
+              <div class="testimonial-card" style="margin-top: 20px">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1374&auto=format&fit=crop"
+                  alt="Michael Thompson"
+                  class="testimonial-banner"
+                  width="80"
+                  height="80"
+                />
+                <h3 class="testimonial-name">Michael Thompson</h3>
+                <p class="testimonial-title">Book Club Organizer</p>
+                <img
+                  src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/icons/quote.svg"
+                  alt="quotation"
+                  class="quotation-img"
+                  width="30"
+                />
+                <p class="testimonial-desc">
+                  "Our book club exclusively orders from BookByte now. The
+                  member discounts and discussion guides that come with each
+                  purchase have added tremendous value to our monthly meetings!"
+                </p>
+              </div>
+            </div>
+
+            <div class="service">
+              <h2 class="title">BookByte Benefits</h2>
+              <div class="service-container">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <ion-icon name="library-outline"></ion-icon>
+                  </div>
+                  <div class="service-content">
+                    <h3 class="service-title">Vast Collection</h3>
+                    <p class="service-desc">
+                      Over 100,000 titles across all genres.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="service-item">
+                  <div class="service-icon">
+                    <ion-icon name="bicycle-outline"></ion-icon>
+                  </div>
+                  <div class="service-content">
+                    <h3 class="service-title">Same-Day Delivery</h3>
+                    <p class="service-desc">
+                      In select cities for orders before 12pm.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="service-item">
+                  <div class="service-icon">
+                    <ion-icon name="bookmarks-outline"></ion-icon>
+                  </div>
+                  <div class="service-content">
+                    <h3 class="service-title">Reader Rewards</h3>
+                    <p class="service-desc">
+                      Earn points with every purchase for discounts.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="service-item">
+                  <div class="service-icon">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                  </div>
+                  <div class="service-content">
+                    <h3 class="service-title">Author Events</h3>
+                    <p class="service-desc">
+                      Weekly book signings and author readings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-section">
+        <div class="container">
+          <div class="literary-quote">
+            "A reader lives a thousand lives before he dies. The man who never
+            reads lives only one."
+            <div class="quote-author">― George R.R. Martin</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Modals -->
+      <div id="fiction-books-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div class="modal-header">
+            <h2>Fiction Books</h2>
+          </div>
+          <div
+            class="modal-products has-scrollbar"
+            style="overflow-x: auto; white-space: nowrap"
+          >
+            <div class="modal-loading">
+              <div class="spinner"></div>
+            </div>
+          </div>
+          <!-- Removed modal-pagination for horizontal scroll -->
+        </div>
+      </div>
+
+      <div id="non-fiction-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div class="modal-header">
+            <h2>Non-Fiction Books</h2>
+          </div>
+          <div
+            class="modal-products has-scrollbar"
+            style="overflow-x: auto; white-space: nowrap"
+          >
+            <div class="modal-loading">
+              <div class="spinner"></div>
+            </div>
+          </div>
+          <!-- Removed modal-pagination for horizontal scroll -->
+        </div>
+      </div>
+
+      <div id="children-books-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div class="modal-header">
+            <h2>Children's Books</h2>
+          </div>
+          <div
+            class="modal-products has-scrollbar"
+            style="overflow-x: auto; white-space: nowrap"
+          >
+            <div class="modal-loading">
+              <div class="spinner"></div>
+            </div>
+          </div>
+          <!-- Removed modal-pagination for horizontal scroll -->
+        </div>
+      </div>
+
+      <div id="book-accessories-modal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div class="modal-header">
+            <h2>Book Accessories</h2>
+          </div>
+          <div
+            class="modal-products has-scrollbar"
+            style="overflow-x: auto; white-space: nowrap"
+          >
+            <div class="modal-loading">
+              <div class="spinner"></div>
+            </div>
+          </div>
+          <!-- Removed modal-pagination for horizontal scroll -->
+        </div>
+      </div>
+
+      <footer>
+        
+
+        <div class="footer-bottom">
+          <div class="container">
+            <img
+              src="https://i.postimg.cc/43GKnVFF/payment.png"
+              alt="payment method"
+              class="payment-img"
+            />
+            <p class="copyright">
+              Copyright &copy; <a href="#">BookByte</a> all rights reserved
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Toast notification container -->
+      <div class="toast-container"></div>
+
+      <script
+        type="module"
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+      ></script>
+      <script
+        nomodule
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+      ></script>
+
+      <!-- Mobile Menu Dropdown Script -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Mobile Menu Dropdown Toggle
+          const mobileMenuDropdownBtn = document.querySelector(
+            ".mobile-menu-dropdown-btn"
+          );
+          const mobileMenuDropdown = document.querySelector(
+            ".mobile-menu-dropdown"
+          );
+
+          if (mobileMenuDropdownBtn && mobileMenuDropdown) {
+            mobileMenuDropdownBtn.addEventListener("click", function (event) {
+              event.stopPropagation(); // Prevent event bubbling
+              mobileMenuDropdown.classList.toggle("active");
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener("click", function (event) {
+              if (!event.target.closest(".mobile-menu-dropdown")) {
+                mobileMenuDropdown.classList.remove("active");
+              }
+            });
+          }
+        });
+      </script>
+
+      <!-- Modal Scripts -->
+      <script th:src="@{/js/modal-unified.js}"></script>
+
+      <!-- Custom JavaScript for cart functionality -->
+      <script th:inline="javascript">
+        // Load cart count on page load
+        document.addEventListener("DOMContentLoaded", function () {
+          // First try to get counts from localStorage for immediate display
+          const savedCartCount = localStorage.getItem("cartCount");
+          if (savedCartCount) {
+            updateCartCount(parseInt(savedCartCount));
+          }
+
+          const savedWishlistCount = localStorage.getItem("wishlistCount");
+          if (savedWishlistCount) {
+            updateWishlistCount(parseInt(savedWishlistCount));
+          }
+
+          // Then fetch the actual counts from the server
+          loadCartCount();
+          loadWishlistCount();
+
+          // Add cart hover functionality
+          const cartBtn = document.querySelector(".cart-btn");
+          if (cartBtn) {
+            cartBtn.addEventListener("mouseenter", loadMiniCartPreview);
+          }
+
+          // Add wishlist hover functionality
+          const wishlistBtn = document.querySelector(".wishlist-btn");
+          if (wishlistBtn) {
+            wishlistBtn.addEventListener("mouseenter", loadMiniWishlistPreview);
+          }
+        });
+
+        // Function to load mini cart preview content
+        function loadMiniCartPreview() {
+          const miniCartItems = document.querySelector(".mini-cart-items");
+          if (!miniCartItems) return;
+
+          // Check if we already loaded this recently (cache for 1 minute)
+          const lastLoad = localStorage.getItem("miniCartLastLoad");
+          const now = Date.now();
+          if (
+            lastLoad &&
+            now - parseInt(lastLoad) < 60000 &&
+            localStorage.getItem("miniCartHtml")
+          ) {
+            miniCartItems.innerHTML = localStorage.getItem("miniCartHtml");
+            return;
+          }
+
+          // Show loading
+          miniCartItems.innerHTML =
+            '<div class="mini-cart-loading">Loading cart items...</div>';
+
+          // Fetch cart items
+          fetch("/cart/mini")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to load cart");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.items && data.items.length > 0) {
+                // Cart has items
+                let html = "";
+                data.items.forEach((item) => {
+                  const productName =
+                    item.name && item.name !== "null"
+                      ? item.name
+                      : "Loading product name...";
+                  html += `
+                  <div class="mini-cart-item">
+                    <img src="${item.image}" alt="${productName}" class="mini-cart-item-img">
+                    <div class="mini-cart-item-details">
+                      <h5 class="mini-cart-item-title" data-product-id="${item.id}">${productName}</h5>
+                      <p class="mini-cart-item-price">${item.price}</p>
+                      <span class="mini-cart-item-qty">Qty: ${item.quantity}</span>
+                    </div>
+                    <button class="mini-cart-item-remove" onclick="removeFromCart(${item.id})">×</button>
+                  </div>
+                `;
+                });
+
+                // Add subtotal
+                html += `
+                <div class="mini-cart-subtotal">
+                  <span>Subtotal:</span>
+                  <strong>${data.subtotal}</strong>
+                </div>
+              `;
+
+                miniCartItems.innerHTML = html;
+
+                // Cache the result
+                localStorage.setItem("miniCartHtml", html);
+                localStorage.setItem("miniCartLastLoad", now.toString());
+
+                // Fetch missing product names
+                setTimeout(fetchMiniCartProductNames, 100);
+              } else {
+                // Cart is empty
+                miniCartItems.innerHTML =
+                  '<div class="mini-cart-empty">Your cart is empty</div>';
+                localStorage.setItem("miniCartHtml", miniCartItems.innerHTML);
+                localStorage.setItem("miniCartLastLoad", now.toString());
+              }
+            })
+            .catch((error) => {
+              miniCartItems.innerHTML =
+                '<div class="mini-cart-error">Failed to load cart items</div>';
+            });
+        }
+
+        // Function to remove item from cart
+        function removeFromCart(productId) {
+          fetch("/cart/remove", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-TOKEN": document
+                .querySelector('meta[name="_csrf"]')
+                ?.getAttribute("content"),
+            },
+            body: JSON.stringify({ productId }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              updateCartCount(data.cartCount || 0);
+              showToast("Success", "Item removed from cart", "success");
+
+              // Clear cache and reload mini cart
+              localStorage.removeItem("miniCartHtml");
+              localStorage.removeItem("miniCartLastLoad");
+              loadMiniCartPreview();
+            })
+            .catch((error) => {
+              showToast("Error", "Failed to remove item from cart", "error");
+            });
+        }
+
+        // Function to load the cart count
+        function loadCartCount() {
+          fetch("/cart/count")
+            .then((response) => response.json())
+            .then((data) => {
+              updateCartCount(data.cartCount || 0);
+            })
+            .catch((error) => {
+              // Silently handle errors in production
+              const savedCount = localStorage.getItem("cartCount");
+              if (savedCount) {
+                updateCartCount(parseInt(savedCount));
+              }
+            });
+        }
+
+        // Function to load wishlist count from server
+        function loadWishlistCount() {
+          fetch("/wishlist/count")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              updateWishlistCount(data.wishlistCount || 0);
+            })
+            .catch((error) => {
+              console.error("Error fetching wishlist count:", error);
+              // If fetch fails, at least try to use the localStorage value
+              const savedCount = localStorage.getItem("wishlistCount");
+              if (savedCount) {
+                updateWishlistCount(parseInt(savedCount));
+              }
+            });
+        }
+
+        // Cart functionality
+        function addToCart(productId) {
+          // Add product to cart using AJAX
+          fetch("/cart/add", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-TOKEN": document
+                .querySelector('meta[name="_csrf"]')
+                ?.getAttribute("content"),
+            },
+            body: JSON.stringify({ productId: productId, quantity: 1 }),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.redirect) {
+                // Redirect if needed (e.g., to login page)
+                window.location.href = data.redirect;
+                return;
+              }
+
+              showToast("Success", "Product added to cart!", "success");
+              // Use the cartCount from the server response
+              if (data.cartCount !== undefined) {
+                updateCartCount(data.cartCount);
+              }
+            })
+            .catch((error) => {
+              showToast(
+                "Error",
+                "Failed to add product to cart. Please try again.",
+                "error"
+              );
+            });
+        }
+
+        // Wishlist functionality
+        function addToWishlist(productId) {
+          // Add product to wishlist using AJAX
+          fetch("/wishlist/add", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-TOKEN": document
+                .querySelector('meta[name="_csrf"]')
+                ?.getAttribute("content"),
+            },
+            body: JSON.stringify({ productId: productId }),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.redirect) {
+                // Redirect if needed (e.g., to login page)
+                window.location.href = data.redirect;
+                return;
+              }
+
+              showToast("Success", "Product added to wishlist!", "success");
+              // Use the wishlistCount from the server response
+              if (data.wishlistCount !== undefined) {
+                updateWishlistCount(data.wishlistCount);
+              }
+
+              // Clear cache to ensure fresh wishlist data
+              localStorage.removeItem("miniWishlistHtml");
+              localStorage.removeItem("miniWishlistLastLoad");
+            })
+            .catch((error) => {
+              showToast(
+                "Error",
+                "Failed to add product to wishlist. Please try again.",
+                "error"
+              );
+              console.error("Error:", error);
+            });
+        }
+
+        // Quick view functionality
+        function quickView(productId) {
+          // Show product details page
+          // You can implement a modal popup to show product details
+          window.location.href = "/products/" + productId;
+        }
+
+        // Update cart count in UI
+        function updateCartCount(count) {
+          const countElements = document.querySelectorAll(".count");
+          const previousCount = parseInt(
+            localStorage.getItem("cartCount") || "0"
+          );
+          const isIncreasing = count > previousCount;
+
+          // Find all cart badges (both in header and mobile navigation)
+          countElements.forEach((element) => {
+            const parentButton = element.closest(".action-btn");
+            if (
+              parentButton &&
+              parentButton.querySelector('ion-icon[name="bag-handle-outline"]')
+            ) {
+              // Update the text
+              element.textContent = count;
+
+              // Apply animation
+              if (isIncreasing) {
+                element.style.animation = "none";
+                void element.offsetWidth; // Trigger reflow
+                element.style.animation = "cartBadgePulse 1s ease-out";
+
+                // Also animate the cart icon
+                const cartIcon = parentButton.querySelector(
+                  'ion-icon[name="bag-handle-outline"]'
+                );
+                if (cartIcon) {
+                  cartIcon.style.animation = "none";
+                  void cartIcon.offsetWidth;
+                  cartIcon.style.animation = "addToCartAnimation 0.5s ease-out";
+                }
+              }
+
+              // Always show the badge, even when count is 0
+              element.style.display = "flex";
+
+              // Adjust size based on count
+              if (count > 9) {
+                element.style.width = "24px";
+              } else {
+                element.style.width = "22px";
+              }
+            }
+          });
+
+          // Store the cart count in localStorage for persistence
+          localStorage.setItem("cartCount", count);
+
+          // Update the cart tooltip if count changes
+          updateCartTooltip(count);
+        }
+
+        // Update wishlist count in UI
+        function updateWishlistCount(count) {
+          const countElements = document.querySelectorAll(".count");
+          const previousCount = parseInt(
+            localStorage.getItem("wishlistCount") || "0"
+          );
+          const isIncreasing = count > previousCount;
+
+          // Find wishlist badges (both in header and mobile navigation)
+          countElements.forEach((element) => {
+            const parentButton = element.closest(".action-btn");
+            if (
+              parentButton &&
+              parentButton.querySelector('ion-icon[name="heart-outline"]')
+            ) {
+              // Update the text
+              element.textContent = count;
+
+              // Apply animation
+              if (isIncreasing) {
+                element.style.animation = "none";
+                void element.offsetWidth; // Trigger reflow
+                element.style.animation = "cartBadgePulse 1s ease-out";
+
+                // Also animate the wishlist icon
+                const wishlistIcon = parentButton.querySelector(
+                  'ion-icon[name="heart-outline"]'
+                );
+                if (wishlistIcon) {
+                  wishlistIcon.style.animation = "none";
+                  void wishlistIcon.offsetWidth; // Trigger reflow
+                  wishlistIcon.style.animation =
+                    "addToCartAnimation 0.5s ease-out";
+                }
+              }
+            }
+          });
+
+          // Store in local storage for persistence
+          localStorage.setItem("wishlistCount", count);
+
+          // Update the wishlist tooltip if count changes
+          updateWishlistTooltip(count);
+        }
+
+        // Update cart tooltip text based on item count
+        function updateCartTooltip(count) {
+          const tooltips = document.querySelectorAll(".cart-tooltip");
+          tooltips.forEach((tooltip) => {
+            if (count === 0) {
+              tooltip.textContent = "Cart Empty";
+            } else if (count === 1) {
+              tooltip.textContent = "View Cart (1 item)";
+            } else {
+              tooltip.textContent = `View Cart (${count} items)`;
+            }
+          });
+        }
+
+        // Update wishlist tooltip text based on item count
+        function updateWishlistTooltip(count) {
+          const tooltips = document.querySelectorAll(".wishlist-tooltip");
+          tooltips.forEach((tooltip) => {
+            if (count === 0) {
+              tooltip.textContent = "Wishlist Empty";
+            } else if (count === 1) {
+              tooltip.textContent = "View Wishlist (1 item)";
+            } else {
+              tooltip.textContent = `View Wishlist (${count} items)`;
+            }
+          });
+        }
+
+        // Show toast notification
+        function showToast(title, message, type = "success") {
+          const toastContainer = document.querySelector(".toast-container");
+          const toast = document.createElement("div");
+          toast.className = `toast ${type}`;
+
+          const toastContent = `
+          <div class="toast-icon">
+            <ion-icon name="${
+              type === "success" ? "checkmark-circle" : "alert-circle"
+            }"></ion-icon>
+          </div>
+          <div class="toast-content">
+            <div class="toast-title">${title}</div>
+            <div class="toast-message">${message}</div>
+          </div>
+          <button class="toast-close" onclick="this.parentElement.remove()">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        `;
+
+          toast.innerHTML = toastContent;
+          toastContainer.appendChild(toast);
+
+          // Auto remove toast after 3 seconds
+          setTimeout(() => {
+            toast.style.opacity = "0";
+            setTimeout(() => {
+              toast.remove();
+            }, 300);
+          }, 3000);
+        }
+
+        // Function to fetch missing product names in mini cart
+        function fetchMiniCartProductNames() {
+          const productNameElements = document.querySelectorAll(
+            ".mini-cart-item-title"
+          );
+
+          productNameElements.forEach((element) => {
+            if (element.textContent.trim() === "Loading product name...") {
+              const productId = element.getAttribute("data-product-id");
+
+              if (productId) {
+                fetch(`/api/products/${productId}`)
+                  .then((response) => response.json())
+                  .then((data) => {
+                    if (data.success && data.data && data.data.name) {
+                      element.textContent = data.data.name;
+                      // Update the cached HTML in localStorage
+                      localStorage.setItem(
+                        "miniCartHtml",
+                        document.querySelector(".mini-cart-items").innerHTML
+                      );
+                    } else {
+                      // If API call fails or returns no name, show category-based name if possible
+                      const categoryName =
+                        data.data && data.data.category
+                          ? data.data.category.name
+                          : null;
+                      element.textContent = categoryName
+                        ? `${categoryName} Product`
+                        : "Product";
+                      // Update the cached HTML in localStorage
+                      localStorage.setItem(
+                        "miniCartHtml",
+                        document.querySelector(".mini-cart-items").innerHTML
+                      );
+                    }
+                  })
+                  .catch((error) => {
+                    console.error(
+                      `Error fetching product name for ID ${productId}:`,
+                      error
+                    );
+                    element.textContent = "Product";
+                    // Update the cached HTML in localStorage
+                    localStorage.setItem(
+                      "miniCartHtml",
+                      document.querySelector(".mini-cart-items").innerHTML
+                    );
+                  });
+              }
+            }
+          });
+        }
+
+        // Function to load mini wishlist preview content
+        function loadMiniWishlistPreview() {
+          const miniWishlistItems = document.querySelector(
+            ".mini-wishlist-items"
+          );
+          if (!miniWishlistItems) return;
+
+          // Check if we already loaded this recently (cache for 5 minutes)
+          const lastLoad = localStorage.getItem("miniWishlistLastLoad");
+          const now = Date.now();
+          if (
+            lastLoad &&
+            now - parseInt(lastLoad) < 300000 && // 5 minutes cache
+            localStorage.getItem("miniWishlistHtml")
+          ) {
+            miniWishlistItems.innerHTML =
+              localStorage.getItem("miniWishlistHtml");
+            return;
+          }
+
+          // Show loading
+          miniWishlistItems.innerHTML =
+            '<div class="mini-wishlist-loading">Loading wishlist items...</div>';
+
+          // Fetch wishlist items
+          fetch("/wishlist/mini")
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Failed to load wishlist");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.items && data.items.length > 0) {
+                // Wishlist has items
+                let html = "";
+                data.items.forEach((item) => {
+                  html += `
+                  <div class="mini-wishlist-item">
+                    <img src="${item.image}" alt="${item.name}" class="mini-wishlist-item-img">
+                    <div class="mini-wishlist-item-details">
+                      <h5 class="mini-wishlist-item-title">${item.name}</h5>
+                      <p class="mini-wishlist-item-price">${item.price}</p>
+                    </div>
+                    <button class="mini-wishlist-item-remove" onclick="removeFromWishlist(${item.id})">×</button>
+                  </div>
+                `;
+                });
+
+                miniWishlistItems.innerHTML = html;
+
+                // Cache the result
+                localStorage.setItem("miniWishlistHtml", html);
+                localStorage.setItem("miniWishlistLastLoad", now.toString());
+              } else {
+                // Wishlist is empty
+                miniWishlistItems.innerHTML =
+                  '<div class="mini-wishlist-empty">Your wishlist is empty</div>';
+                localStorage.setItem(
+                  "miniWishlistHtml",
+                  miniWishlistItems.innerHTML
+                );
+                localStorage.setItem("miniWishlistLastLoad", now.toString());
+              }
+            })
+            .catch((error) => {
+              miniWishlistItems.innerHTML =
+                '<div class="mini-wishlist-error">Failed to load wishlist items</div>';
+              console.error("Error loading wishlist:", error);
+            });
+        }
+
+        // Function to remove item from wishlist
+        function removeFromWishlist(productId) {
+          fetch("/wishlist/remove", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-TOKEN": document
+                .querySelector('meta[name="_csrf"]')
+                ?.getAttribute("content"),
+            },
+            body: JSON.stringify({ productId }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              updateWishlistCount(data.wishlistCount || 0);
+              showToast("Success", "Item removed from wishlist", "success");
+
+              // Clear cache and reload mini wishlist
+              localStorage.removeItem("miniWishlistHtml");
+              localStorage.removeItem("miniWishlistLastLoad");
+              loadMiniWishlistPreview();
+            })
+            .catch((error) => {
+              showToast("Error", "Failed to remove item from wishlist", "error");
+              console.error("Error removing from wishlist:", error);
+            });
+        }
+      </script>
+
+      <!-- Cart Counter Visibility Fix Script -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          // Make sure cart counters are visible
+          const cartCounters = document.querySelectorAll(".cart-counter");
+          cartCounters.forEach((counter) => {
+            // Make sure cart counters have proper styling
+            counter.style.display = "flex";
+            counter.style.zIndex = "100";
+
+            // Add animation when count changes
+            const currentCount = counter.textContent.trim();
+            counter.setAttribute("data-last-count", currentCount);
+
+            // Store initial count for change detection
+            window.lastCartCount = currentCount;
+
+            // If count is zero, still show the counter but smaller
+            if (currentCount === "0") {
+              counter.style.width = "18px";
+              counter.style.height = "18px";
+              counter.style.fontSize = "10px";
+            } else {
+              counter.style.width = "22px";
+              counter.style.height = "22px";
+            }
+          });
+        });
+
+        // Function to update cart counters
+        function updateCartCounter(count) {
+          const cartCounters = document.querySelectorAll(".cart-counter");
+          cartCounters.forEach((counter) => {
+            // Always ensure counter is visible
+            counter.style.display = "flex";
+            counter.style.zIndex = "100";
+
+            counter.textContent = count;
+            counter.classList.add("cart-counter-update");
+
+            // Remove animation class after animation completes
+            setTimeout(() => {
+              counter.classList.remove("cart-counter-update");
+            }, 500);
+
+            // Adjust size based on count digits
+            if (count > 9) {
+              counter.style.width = "24px";
+            } else {
+              counter.style.width = count > 0 ? "22px" : "20px";
+              counter.style.fontSize = count > 0 ? "12px" : "10px";
+            }
+          });
+        }
+      </script>
+
+      <!-- Script loading order is important for modal functionality -->
+      <script th:src="@{/js/product-categories.js}"></script>
+      <script th:src="@{/js/modal-unified.js}"></script>
+      <script th:src="@{/js/home-product-meta.js}"></script>
+      <script th:src="@{/js/home-product-fetch.js}"></script>
+      <script th:src="@{/js/toast-notifications.js}"></script>
+      <script th:src="@{/js/modal-diagnostic.js}"></script>
+      <script>
+        // Attach cart/wishlist event listeners after dynamic products are rendered
+        document.addEventListener("DOMContentLoaded", function () {
+          function delegateEvent(parent, selector, event, handler) {
+            parent.addEventListener(event, function (e) {
+              const target = e.target.closest(selector);
+              if (target) handler(target, e);
+            });
+          }
+          // Wait for products to be rendered
+          function setupProductActions() {
+            const featuredGrid = document.querySelector(
+              ".product-main .product-grid"
+            );
+            const newArrivals = document.querySelector(
+              ".product-minimal .showcase-wrapper .showcase-container"
+            );
+            // Add additional containers where product buttons might appear (modals, etc.)
+            const allContainers = [
+              featuredGrid,
+              newArrivals,
+              document.querySelector(".modal-products"), // For modal product displays
+              document.querySelector(".wishlist-items-container"), // For wishlist
+            ];
+
+            allContainers.forEach((container) => {
+              if (!container) return;
+              // Add to Cart - using data attributes instead of onclick
+              delegateEvent(
+                container,
+                '[data-cart-action="add"]',
+                "click",
+                (btn, e) => {
+                  e.preventDefault();
+                  const id = parseInt(btn.getAttribute("data-product-id"));
+                  addToCart(id);
+                }
+              );
+              // Add to Wishlist
+              delegateEvent(
+                container,
+                '.btn-action[onclick^="addToWishlist"]',
+                "click",
+                (btn, e) => {
+                  e.preventDefault();
+                  const id = parseInt(
+                    btn.getAttribute("onclick").match(/\d+/)[0]
+                  );
+                  addToWishlist(id);
+                }
+              );
+              // Quick View
+              delegateEvent(
+                container,
+                '.btn-action[onclick^="quickView"]',
+                "click",
+                (btn, e) => {
+                  e.preventDefault();
+                  const id = parseInt(
+                    btn.getAttribute("onclick").match(/\d+/)[0]
+                  );
+                  quickView(id);
+                }
+              );
+            });
+          }
+          // Wait for dynamic rendering
+          setTimeout(setupProductActions, 500);
+        });
+      </script>
+    </body>
+  </html>

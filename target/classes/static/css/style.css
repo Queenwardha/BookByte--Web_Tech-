@@ -1,0 +1,223 @@
+/* CSS Variables */
+:root {
+  /* Legacy variables kept for backward compatibility */
+  --coffee-primary: var(--book-primary); /* Redirects to book-primary */
+  --coffee-dark: var(--book-dark); /* Redirects to book-dark */
+  --coffee-light: var(--book-light); /* Redirects to book-light */
+  --coffee-accent: var(--book-accent); /* Redirects to book-accent */
+  --coffee-bg: var(--book-bg); /* Redirects to book-bg */
+
+  /* BookByte theme colors */
+  --book-primary: #1e3a8a; /* Dark blue */
+  --book-dark: #0f172a; /* Deep navy */
+  --book-light: #e0f2fe; /* Light blue */
+  --book-accent: #6366f1; /* Indigo */
+  --book-secondary: #0ea5e9; /* Sky blue */
+  --book-tertiary: #8b5cf6; /* Purple */
+  --book-bg: #f8fafc; /* Off-white */
+
+  /* Shadows and other common variables */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --transition-fast: 0.15s ease;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+}
+
+/* General styling */
+body {
+  font-family: "Merriweather", "Georgia", serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Import book-themed fonts */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Playfair+Display:wght@400;500;600;700&family=Roboto+Slab:wght@300;400;500;700&display=swap");
+
+main {
+  flex: 1;
+}
+
+/* Product card styling */
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Product detail page */
+.product-image {
+  max-height: 400px;
+  object-fit: contain;
+}
+
+/* Shopping cart */
+.cart-item-img {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+}
+
+/* Admin dashboard */
+.admin-dashboard-card {
+  transition: all 0.3s ease;
+}
+
+.admin-dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Order status badges */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-PENDING {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.status-PROCESSING {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.status-SHIPPED {
+  background-color: #007bff;
+  color: white;
+}
+
+.status-DELIVERED {
+  background-color: #28a745;
+  color: white;
+}
+
+.status-CANCELLED {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Utility classes */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Pagination */
+.pagination {
+  justify-content: center;
+}
+
+/* Heading styles with book-themed fonts */
+h1,
+h2,
+h3,
+.title {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  color: var(--book-dark);
+}
+
+h4,
+h5,
+h6 {
+  font-family: "Roboto Slab", serif;
+  font-weight: 500;
+}
+
+.showcase-title {
+  font-family: "Roboto Slab", serif;
+}
+
+/* Book-specific typography */
+.book-title {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.book-author {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+}
+
+/* Product category badges with literary style */
+.showcase-category {
+  font-family: "Roboto Slab", serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Footer always at bottom */
+footer {
+  margin-top: auto;
+}
+
+/* Book-themed footer styling */
+footer {
+  background-color: var(--book-dark);
+  color: white;
+  font-family: "Merriweather", serif;
+}
+
+.footer-nav-list .nav-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  color: white;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.footer-nav-list .nav-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 40px;
+  background-color: var(--book-accent);
+}
+
+.footer-nav-link {
+  font-family: "Roboto Slab", serif;
+  transition: all 0.3s ease;
+}
+
+.footer-nav-link:hover {
+  color: var(--book-accent);
+  transform: translateX(5px);
+}
+
+/* Special styling for literary quotes */
+.literary-quote {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  line-height: 1.6;
+  position: relative;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--book-accent);
+}
+
+.literary-quote::before {
+  content: '"';
+  font-size: 3rem;
+  position: absolute;
+  left: 5px;
+  top: -10px;
+  opacity: 0.3;
+  color: var(--book-accent);
+}
